@@ -55,8 +55,8 @@ namespace csharp_biblioteca
             Borrowed cleanCodeBorrow = new Borrowed(registeredUser.Name, 12);
 
             Console.WriteLine(cleanCodeBorrow.UserName);
-            Console.WriteLine(cleanCodeBorrow.StartDate.ToString("d"));
-            Console.WriteLine(cleanCodeBorrow.EndDate.ToString("d"));
+            Console.WriteLine(cleanCodeBorrow.StartDate);
+            Console.WriteLine(cleanCodeBorrow.EndDate);
 
         }
     }

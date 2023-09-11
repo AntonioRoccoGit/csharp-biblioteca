@@ -10,12 +10,13 @@ namespace csharp_biblioteca
     {
 
         //-----------------------------------------ATTRIBUTE
-        private List<Document> Documents;
+        private List<Document> Documents = new List<Document>();
+        private List<Borrowed> Borrows = new List<Borrowed>();
+
 
         public Library(string name) 
         {
-            this.Name = name;    
-            this.Documents = new List<Document>();
+            this.Name = name;
         }
 
 
@@ -25,7 +26,7 @@ namespace csharp_biblioteca
         //-----------------------------------------FUNCTIONS
 
 
-        //Document List function
+        //-----------------------------------documents List function
         public void pushDocument(Document document)
         {
             this.Documents.Add(document);
@@ -57,7 +58,7 @@ namespace csharp_biblioteca
         /// Find document by ID
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id"> Write the id (ISBN included for the book) </param>
         public void findById(string id)
         {
             foreach (Document item in this.Documents)
@@ -77,6 +78,7 @@ namespace csharp_biblioteca
         /// <summary>
         /// Find document by name(not key sensitive)
         /// </summary>
+        /// <param name="name"> Write the complete name, no key sensititve </param>
         public void findByTitle(string name)
         {
             foreach (Document item in this.Documents)
@@ -92,11 +94,38 @@ namespace csharp_biblioteca
             Console.WriteLine();
         }
 
+        //-----------------------------------borrows List function
 
+        public void pushBorrow(Borrowed borrow)
+        {
+            this.Borrows.Add(borrow);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void popBorrows(Borrowed borrow)
+        {
+            this.Borrows.Remove(borrow);
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void getBorrows()
+        {
+            foreach (var item in this.Borrows)
+            {
+                //TODO;
+            }
+            Console.WriteLine();
+        }
         //-------------------------------------UTILITIES FUNCTION
 
         private void documentDetails(Document item)
         {
+            Console.WriteLine();
             Console.WriteLine("------------------------------");
             Console.WriteLine($"            Risultato Trovato");
             Console.WriteLine($" Titolo: {item.Title}");
@@ -106,5 +135,6 @@ namespace csharp_biblioteca
             Console.WriteLine();
 
         }
+
     }
 }
