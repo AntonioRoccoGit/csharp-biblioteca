@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace csharp_biblioteca
 {
-    internal class Library
+    public class Library
     {
 
-        //ATTRIBUTE
+        //-----------------------------------------ATTRIBUTE
         private List<Document> Documents;
 
         public Library(string name) 
@@ -53,6 +53,11 @@ namespace csharp_biblioteca
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Find document by ID
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
         public void findById(string id)
         {
             foreach (Document item in this.Documents)
@@ -69,7 +74,9 @@ namespace csharp_biblioteca
 
         }
 
-
+        /// <summary>
+        /// Find document by name(not key sensitive)
+        /// </summary>
         public void findByTitle(string name)
         {
             foreach (Document item in this.Documents)

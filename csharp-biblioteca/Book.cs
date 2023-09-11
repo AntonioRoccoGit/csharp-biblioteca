@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace csharp_biblioteca
 {
-    internal class Book : Document
+    public class Book : Document
     {
 
         private int _NumberPage;
 
         public Book(string idNumber, string title, string date, string genre) : base(idNumber, title, date, genre)
         {
-
         }
 
         //PROPERTIES

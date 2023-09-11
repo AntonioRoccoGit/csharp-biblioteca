@@ -2,7 +2,7 @@
 
 namespace csharp_biblioteca
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -47,11 +47,16 @@ namespace csharp_biblioteca
 
             //search by id
             myFirstLibrary.findById("4");
-            myFirstLibrary.findById("959484");
+            myFirstLibrary.findById("ISBN-959484");
             myFirstLibrary.findByTitle("no imagination");
             myFirstLibrary.findByTitle("clean Code");
 
+            //Create some borrow
+            Borrowed cleanCodeBorrow = new Borrowed(registeredUser.Name, 12);
 
+            Console.WriteLine(cleanCodeBorrow.UserName);
+            Console.WriteLine(cleanCodeBorrow.StartDate.ToString("d"));
+            Console.WriteLine(cleanCodeBorrow.EndDate.ToString("d"));
 
         }
     }
