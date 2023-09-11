@@ -27,7 +27,7 @@ namespace csharp_biblioteca
 
 
         //-----------------------------------documents List function
-        public void pushDocument(Document document)
+        public void PushDocument(Document document)
         {
             this.Documents.Add(document);
         }
@@ -36,7 +36,7 @@ namespace csharp_biblioteca
         /// delete the specific document from library
         /// </summary>
         /// <param name="document"></param>
-        public void popDocument(Document document)
+        public void PopDocument(Document document)
         {
             this.Documents.Remove(document);
         }
@@ -45,12 +45,17 @@ namespace csharp_biblioteca
         /// <summary>
         /// Get in console the Title of each Document
         /// </summary>
-        public void getDocuments()
+        public void GetDocuments()
         {
+
+            Console.WriteLine();
+            Console.WriteLine("Ecco la tua lista dei documenti");
+            Console.WriteLine();
             foreach (var item in this.Documents)
             {
                 Console.WriteLine(item.Title);
             }
+            Console.WriteLine("-------------FINE LISTA----------");
             Console.WriteLine();
         }
 
@@ -59,13 +64,13 @@ namespace csharp_biblioteca
         /// 
         /// </summary>
         /// <param name="id"> Write the id (ISBN included for the book) </param>
-        public void findById(string id)
+        public void FindDocumentById(string id)
         {
             foreach (Document item in this.Documents)
             {
                 if (item.IdentificationNumber == id)
                 {
-                    documentDetails(item);
+                    DocumentDetails(item);
                     return;
 
                 }
@@ -79,13 +84,14 @@ namespace csharp_biblioteca
         /// Find document by name(not key sensitive)
         /// </summary>
         /// <param name="name"> Write the complete name, no key sensititve </param>
-        public void findByTitle(string name)
+        public void FindDocumentByTitle(string name)
         {
             foreach (Document item in this.Documents)
             {
+               
                 if (item.Title.ToLower() == name.ToLower())
                 {
-                    documentDetails(item);
+                    DocumentDetails(item);
                     return;
 
                 }
@@ -96,7 +102,7 @@ namespace csharp_biblioteca
 
         //-----------------------------------borrows List function
 
-        public void pushBorrow(Borrowed borrow)
+        public void PushBorrow(Borrowed borrow)
         {
             this.Borrows.Add(borrow);
         }
@@ -104,7 +110,7 @@ namespace csharp_biblioteca
         /// <summary>
         /// 
         /// </summary>
-        public void popBorrows(Borrowed borrow)
+        public void PopBorrows(Borrowed borrow)
         {
             this.Borrows.Remove(borrow);
         }
@@ -113,28 +119,65 @@ namespace csharp_biblioteca
         /// <summary>
         /// 
         /// </summary>
-        public void getBorrows()
+        public void GetBorrowsHistory()
         {
             foreach (var item in this.Borrows)
             {
-                //TODO;
+                this.BorrowDetails(item);
             }
             Console.WriteLine();
         }
+
+        public void GetBorrowByUser(User user)
+        {
+            bool nameMatch = false;
+            bool surnameMatch = false;
+
+            foreach (var item in this.Borrows)
+            {
+                nameMatch = item.UserName.ToLower() == user.Name.ToLower();
+                surnameMatch = item.UserSurname.ToLower() == user.Surname.ToLower();
+                if (nameMatch && surnameMatch )
+                {
+                    this.BorrowDetails(item);
+                }
+            }
+            if (!nameMatch && !surnameMatch)
+            {
+            Console.WriteLine("Nessun'impegnativa trovata");
+            Console.WriteLine();
+
+            }
+
+        }
+
         //-------------------------------------UTILITIES FUNCTION
 
-        private void documentDetails(Document item)
+        private void DocumentDetails(Document item)
         {
             Console.WriteLine();
-            Console.WriteLine("------------------------------");
-            Console.WriteLine($"            Risultato Trovato");
+            Console.WriteLine("-----------------------");
+            Console.WriteLine($"    Risultato Trovato:");
+            Console.WriteLine();
             Console.WriteLine($" Titolo: {item.Title}");
             Console.WriteLine($" ID: {item.IdentificationNumber}");
             Console.WriteLine($" Genere: {item.Genre}");
-            Console.WriteLine("------------------------------");
+            Console.WriteLine("-----------------------");
             Console.WriteLine();
 
         }
 
+        private void BorrowDetails(Borrowed item)
+        {
+            Console.WriteLine();
+            Console.WriteLine("------------------------------");
+            Console.WriteLine($"          Impegnativa cliente");
+            Console.WriteLine($" Credenziali: {item.UserName} {item.UserSurname}");
+            Console.WriteLine($" Data di presa in caricp: {item.StartDate}");
+            Console.WriteLine($" Data di riconsegna: {item.EndDate}");
+            Console.WriteLine("------------------------------");
+            Console.WriteLine();
+
+        }
     }
 }

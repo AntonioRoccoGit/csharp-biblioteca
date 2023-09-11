@@ -55,6 +55,12 @@ namespace csharp_biblioteca
 
         //SETTER
 
+
+        /// <summary>
+        /// This method able us to locate a document in our library
+        /// </summary>
+        /// <param name="section">write the section's name or number</param>
+        /// <param name="rack">write the rack number</param>
         public void SetLocatedAt(string section, string rack)
         {
             this.locatedAt = $"Corridoio: {section}, scaffale: {rack}";

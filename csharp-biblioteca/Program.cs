@@ -12,51 +12,48 @@ namespace csharp_biblioteca
             Library myFirstLibrary = new Library("Biblio DB");
 
             //create an user
-            User registeredUser = new User("User","Foo","user.foo@gmail.com","adminadmin", "3339990000");
-
+            User registeredUser = new User("Pippo","Foo","user.foo@gmail.com","adminadmin", "3339990000");
+            User registeredUserNoBorrow = new User("Franco","Bar","franco.bar@gmail.com","adminadmin", "3339990000");
 
             //create generic documents
             Document theLionKing = new Document("1436599887", "The Lion King", "1994", "animation");
             theLionKing.SetLocatedAt("4","6a");
             theLionKing.SetAuthor("Pinco", "Pallo");
 
-
             Book wordWar = new Book("ISBN-001", "Word War", "1945", "action");
             Book noImagination = new Book("ISBN-959484", "No Imagination", "2012", "imagination");
             Dvd happyBook = new Dvd("959484", "Happy Book", "2012", "imagination");
             Dvd cleanCode = new Dvd("001", "Clean Code", "1945", "action");
 
-
             //add document in documents list
-            myFirstLibrary.pushDocument(theLionKing);
-            myFirstLibrary.pushDocument(wordWar);
-            myFirstLibrary.pushDocument(noImagination);
-            myFirstLibrary.pushDocument(happyBook);
-            myFirstLibrary.pushDocument(cleanCode);
+            myFirstLibrary.PushDocument(theLionKing);
+            myFirstLibrary.PushDocument(wordWar);
+            myFirstLibrary.PushDocument(noImagination);
+            myFirstLibrary.PushDocument(happyBook);
+            myFirstLibrary.PushDocument(cleanCode);
 
             //control if documents are added
-            myFirstLibrary.getDocuments();
+            myFirstLibrary.GetDocuments();
 
             //remove a document
-            myFirstLibrary.popDocument(theLionKing);
+            myFirstLibrary.PopDocument(theLionKing);
 
             //control the document was removed 
-            myFirstLibrary.getDocuments();
-            
-
+            myFirstLibrary.GetDocuments();
 
             //search by id
-            myFirstLibrary.findById("4");
-            myFirstLibrary.findById("ISBN-959484");
-            myFirstLibrary.findByTitle("no imagination");
-            myFirstLibrary.findByTitle("clean Code");
+            myFirstLibrary.FindDocumentById("4");
+            myFirstLibrary.FindDocumentById("ISBN-959484");
+            myFirstLibrary.FindDocumentByTitle("clean Code");
 
             //Create some borrow
-            Borrowed cleanCodeBorrow = new Borrowed(registeredUser.Name, 12);
+            Borrowed cleanCodeBorrow = new Borrowed(registeredUser, 12, "001");
 
-            Console.WriteLine(cleanCodeBorrow.UserName);
-            Console.WriteLine(cleanCodeBorrow.StartDate);
-            Console.WriteLine(cleanCodeBorrow.EndDate);
+            myFirstLibrary.PushBorrow(cleanCodeBorrow);
+            myFirstLibrary.GetBorrowsHistory();
+            myFirstLibrary.GetBorrowByUser(registeredUser);
+            myFirstLibrary.GetBorrowByUser(registeredUserNoBorrow); 
+
 
         }
     }
