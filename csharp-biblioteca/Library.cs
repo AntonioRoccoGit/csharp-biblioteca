@@ -45,7 +45,7 @@ namespace csharp_biblioteca
         /// <summary>
         /// Get in console the Title of each Document
         /// </summary>
-        public void GetDocuments()
+        public void GetDocumentsList()
         {
 
             Console.WriteLine();
@@ -121,9 +121,11 @@ namespace csharp_biblioteca
         /// </summary>
         public void GetBorrowsHistory()
         {
+            Console.WriteLine();
             foreach (var item in this.Borrows)
             {
-                this.BorrowDetails(item);
+                Console.WriteLine("Utente: "+ item.UserSurname + " " + item.UserName);
+                Console.WriteLine("Data riconsegna: " + item.EndDate);
             }
             Console.WriteLine();
         }

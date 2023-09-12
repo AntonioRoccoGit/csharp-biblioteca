@@ -33,13 +33,13 @@ namespace csharp_biblioteca
             myFirstLibrary.PushDocument(cleanCode);
 
             //control if documents are added
-            myFirstLibrary.GetDocuments();
+            myFirstLibrary.GetDocumentsList();
 
             //remove a document
             myFirstLibrary.PopDocument(theLionKing);
 
             //control the document was removed 
-            myFirstLibrary.GetDocuments();
+            myFirstLibrary.GetDocumentsList();
 
             //search by id
             myFirstLibrary.FindDocumentById("4");
@@ -53,8 +53,6 @@ namespace csharp_biblioteca
             myFirstLibrary.GetBorrowsHistory();
             myFirstLibrary.GetBorrowByUser(registeredUser);
             myFirstLibrary.GetBorrowByUser(registeredUserNoBorrow); 
-
-
         }
     }
 }
